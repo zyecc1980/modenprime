@@ -1,47 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Moden Prime</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .container {
-      max-width: 700px;
-      padding: 40px;
-    }
-    h1 {
-      font-size: 48px;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-    }
-    p {
-      font-size: 18px;
-      opacity: 0.8;
-      margin-bottom: 32px;
-    }
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Prime</title>
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--gray);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--black);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--medium-gray);
+        }
+        
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+        }
+        
+        #home {
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .about-text {
+            max-width: 800px;
+            font-size: 24px;
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+        
+        h2 {
+            font-size: 48px;
+            margin-bottom: 60px;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .value-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .value-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .services-grid, .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .service-card, .portfolio-item {
+            background-color: var(--gray);
+            padding: 40px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--medium-gray);
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            background-color: var(--dark-gray);
+            color: var(--white);
+        }
+        
+        form {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        input, textarea {
+            padding: 15px;
+            border: 1px solid var(--gray);
+            background-color: var(--white);
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 15px;
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--dark-gray);
+        }
+        
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 40px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>MODEN PRIME</h1>
-    <p>Modern digital solutions for growing brands.</p>
-    <a href="mailto:hello@modenprime.com">Contact us</a>
-  </div>
-</body>
-</html>
+    <header>
+        <nav>
+            <a href="#home" class="logo">Modern Prime</a>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <h1>Modern Prime</h1>
+        <p class="about-text">
+            Мы — студ
