@@ -6,13 +6,13 @@
     <title>Modern Prime</title>
     <style>
         :root {
-            --black: #000000;
             --white: #ffffff;
-            --gray: #f0f0f0;
-            --dark-gray: #333333;
-            --medium-gray: #666666;
+            --light-gray: #f8f8f8;
+            --medium-gray: #dddddd;
+            --dark-gray: #999999;
+            --black: #000000;
         }
-        
+
         body {
             margin: 0;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -20,181 +20,106 @@
             background-color: var(--white);
             line-height: 1.6;
         }
-        
+
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
             background-color: var(--white);
-            border-bottom: 1px solid var(--gray);
-            z-index: 1000;
-            padding: 20px 0;
         }
-        
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 40px;
-        }
-        
+
         .logo {
-            font-size: 28px;
+            font-size: 40px;
             font-weight: bold;
             color: var(--black);
             text-decoration: none;
+            letter-spacing: 2px;
         }
-        
-        .nav-links {
-            list-style: none;
+
+        .hero {
+            position: relative;
+            height: 80vh;
+            min-height: 600px;
+            /* Выберите один из URL ниже и вставьте сюда */
+            background-image: url('https://i0.wp.com/homecompanionmag.com/wp-content/uploads/2025/11/Minimalist_Home_Office_Ideas__8_.jpeg?fit=990%2C662&ssl=1');
+            background-size: cover;
+            background-position: center;
             display: flex;
-            gap: 40px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--black);
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--medium-gray);
-        }
-        
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            align-items: flex-end;
             justify-content: center;
-            align-items: center;
-            text-align: center;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(transparent, var(--white));
+            width: 100%;
             padding: 120px 40px 80px;
-        }
-        
-        #home {
-            background-color: var(--black);
-            color: var(--white);
-        }
-        
-        h1 {
-            font-size: 64px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .about-text {
-            max-width: 800px;
-            font-size: 24px;
-            margin-bottom: 60px;
-            opacity: 0.9;
-        }
-        
-        h2 {
-            font-size: 48px;
-            margin-bottom: 60px;
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            width: 100%;
-        }
-        
-        .value-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .value-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .services-grid, .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            width: 100%;
-        }
-        
-        .service-card, .portfolio-item {
-            background-color: var(--gray);
-            padding: 40px;
-            height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            color: var(--medium-gray);
-            font-size: 20px;
-            transition: all 0.3s;
         }
-        
-        .service-card:hover {
-            background-color: var(--dark-gray);
-            color: var(--white);
+
+        .description {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 26px;
+            color: var(--black);
+            line-height: 1.8;
         }
-        
-        form {
-            max-width: 600px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        input, textarea {
-            padding: 15px;
-            border: 1px solid var(--gray);
-            background-color: var(--white);
-            font-size: 16px;
-        }
-        
-        button {
-            padding: 15px;
-            background-color: var(--black);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        
-        button:hover {
-            background-color: var(--dark-gray);
-        }
-        
+
         footer {
-            background-color: var(--black);
-            color: var(--white);
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
             text-align: center;
-            padding: 40px;
-            font-size: 14px;
+            padding: 80px 40px;
+            font-size: 16px;
+        }
+
+        .contacts p {
+            margin: 15px 0;
+        }
+
+        .contacts a {
+            color: var(--dark-gray);
+            text-decoration: none;
+        }
+
+        .contacts a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 32px; }
+            .description { font-size: 20px; padding: 0 20px; }
+            header, footer { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
+
     <header>
-        <nav>
-            <a href="#home" class="logo">Modern Prime</a>
-            <ul class="nav-links">
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#portfolio">Портфолио</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
-        </nav>
+        <div class="logo">Modern Prime</div>
     </header>
-    
-    <section id="home">
-        <h1>Modern Prime</h1>
-        <p class="about-text">
-            Мы — студ
+
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="description">
+                <p>
+                    Мы — студия цифровых решений, создающая чистые, эффективные и долговечные продукты.<br>
+                    Специализируемся на <strong>минималистичном веб-дизайне</strong>, <strong>брендинге</strong> и <strong>разработке сайтов</strong>, 
+                    где каждое решение подчёркивает суть вашего бизнеса.
+                </p>
+                <p>
+                    Качество, внимание к деталям и долгосрочное партнёрство — основа нашей работы.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contacts">
+            <p><strong>Modern Prime</strong></p>
+            <p><a href="mailto:info@modernprime.ru">info@modernprime.ru</a></p>
+            <p>+7 (999) 123-45-67</p>
+            <p>Москва, ул. Примерная, 10, офис 501</p>
+        </div>
+    </footer>
+
+</body>
+</html>
