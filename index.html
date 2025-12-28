@@ -5,89 +5,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Prime</title>
     <style>
-        :root {
-            --white: #ffffff;
-            --light-gray: #f8f8f8;
-            --medium-gray: #dddddd;
-            --dark-gray: #999999;
-            --black: #000000;
-        }
-
         body {
             margin: 0;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: var(--black);
-            background-color: var(--white);
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Светлый голубой градиент */
+            color: #333;
             line-height: 1.6;
         }
 
         header {
-            padding: 50px 40px;
-            text-align: center;
-            background-color: var(--white);
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .logo {
-            font-size: 40px;
+            font-size: 28px;
             font-weight: bold;
-            color: var(--black);
+            color: #00acc1; /* Бирюзовый как в HotelHub */
+        }
+
+        nav a {
+            margin-left: 30px;
             text-decoration: none;
-            letter-spacing: 2px;
-        }
-
-        .hero {
-            position: relative;
-            height: 80vh;
-            min-height: 600px;
-            /* Выберите один из URL ниже и вставьте сюда */
-            background-image: url('https://i0.wp.com/homecompanionmag.com/wp-content/uploads/2025/11/Minimalist_Home_Office_Ideas__8_.jpeg?fit=990%2C662&ssl=1');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-
-        .hero-overlay {
-            background: linear-gradient(transparent, var(--white));
-            width: 100%;
-            padding: 120px 40px 80px;
-            text-align: center;
-        }
-
-        .description {
-            max-width: 900px;
-            margin: 0 auto;
-            font-size: 26px;
-            color: var(--black);
-            line-height: 1.8;
-        }
-
-        footer {
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            text-align: center;
-            padding: 80px 40px;
+            color: #666;
             font-size: 16px;
         }
 
-        .contacts p {
-            margin: 15px 0;
-        }
-
-        .contacts a {
-            color: var(--dark-gray);
+        .btn {
+            background: #00acc1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
             text-decoration: none;
+            font-weight: bold;
         }
 
-        .contacts a:hover {
-            text-decoration: underline;
+        .hero {
+            padding: 100px 60px;
+            text-align: left;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
         }
 
-        @media (max-width: 768px) {
-            .logo { font-size: 32px; }
-            .description { font-size: 20px; padding: 0 20px; }
-            header, footer { padding: 40px 20px; }
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: bold;
+            color: #006064;
+            margin-bottom: 20px;
+        }
+
+        .hero-img {
+            width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-img img {
+            width: 100%;
+            display: block;
+        }
+
+        .story {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 60px;
+            position: relative;
+        }
+
+        .timeline {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #00acc1;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #00acc1;
+            border-radius: 50%;
+            position: absolute;
+            left: -8px;
+            border: 4px solid white;
+            box-shadow: 0 0 10px rgba(0,172,193,0.3);
+        }
+
+        .story-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 150px;
+            position: relative;
+        }
+
+        .story-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .story-content {
+            width: 45%;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .story-content h2 {
+            color: #00acc1;
+            margin-bottom: 20px;
+        }
+
+        .story-img {
+            width: 45%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .story-img img {
+            width: 100%;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .hero, .story-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .story-item:nth-child(even) {
+                flex-direction: column;
+            }
+            .story-content, .story-img, .hero-img {
+                width: 100%;
+                margin-bottom: 40px;
+            }
+            .timeline {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -95,31 +159,49 @@
 
     <header>
         <div class="logo">Modern Prime</div>
+        <nav>
+            <a href="#">Услуги</a>
+            <a href="#">Портфолио</a>
+            <a href="#">О нас</a>
+            <a href="#" class="btn">Связаться</a>
+        </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-overlay">
-            <div class="description">
-                <p>
-                    Мы — студия цифровых решений, создающая чистые, эффективные и долговечные продукты.<br>
-                    Специализируемся на <strong>минималистичном веб-дизайне</strong>, <strong>брендинге</strong> и <strong>разработке сайтов</strong>, 
-                    где каждое решение подчёркивает суть вашего бизнеса.
-                </p>
-                <p>
-                    Качество, внимание к деталям и долгосрочное партнёрство — основа нашей работы.
-                </p>
-            </div>
+        <div class="hero-text">
+            <h1>Один маленький шаг для<br>технологий, один<br>гигантский прыжок для<br>вашего бизнеса.</h1>
+        </div>
+        <div class="hero-img">
+            <img src="https://media.gettyimages.com/id/161710675/photo/vintage-astronaut-sitting-on-luggage-waiting-for-a-ride.jpg?s=612x612&w=gi&k=20&c=BuRPeyhdQJKJOmLh6jAqRzFtkBaEBPUJVEUXZ78hZRA=" alt="Астронавт с чемоданом">
         </div>
     </section>
 
-    <footer>
-        <div class="contacts">
-            <p><strong>Modern Prime</strong></p>
-            <p><a href="mailto:info@modernprime.ru">info@modernprime.ru</a></p>
-            <p>+7 (999) 123-45-67</p>
-            <p>Москва, ул. Примерная, 10, офис 501</p>
+    <section class="story">
+        <div class="timeline"></div>
+
+        <div class="story-item">
+            <div class="story-content">
+                <h2>История начинается...</h2>
+                <p>От скромных начал — всего пара энтузиастов, мечтающих изменить мир путешествий. Мы создали простое решение для бронирования отелей, которое быстро выросло в мощную платформу.</p>
+            </div>
+            <div class="story-img">
+                <img src="https://thumbs.dreamstime.com/b/new-plant-growth-sprout-soil-minimalist-green-plant-stock-photo-small-green-plant-sprout-multiple-leaves-emerges-397643055.jpg" alt="Росток растения">
+            </div>
+            <div class="timeline-dot" style="top: 80px;"></div>
         </div>
-    </footer>
+
+        <div class="story-item">
+            <div class="story-content">
+                <h2>От амбициозного стартапа...</h2>
+                <p>Получили первые инвестиции, наняли команду и начали масштабироваться. С фокусом на инновации мы создали уникальные инструменты для бизнес-путешественников.</p>
+            </div>
+            <div class="story-img">
+                <img src="https://c8.alamy.com/comp/T9C396/making-money-with-his-own-business-rich-businessman-with-us-dollars-banknotes-currency-broker-with-bundle-of-money-bearded-man-holding-cash-money-business-startup-loan-cash-in-hand-T9C396.jpg" alt="Инвестиции">
+            </div>
+            <div class="timeline-dot" style="top: 80px;"></div>
+        </div>
+
+    </section>
 
 </body>
 </html>
