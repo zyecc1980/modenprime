@@ -1,177 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MODEN PRIME LTD</title>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #1f2933;
-      --muted: #6b7280;
-      --accent: #e5e7eb;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    header {
-      padding: 40px 80px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--accent);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo img {
-      height: 40px;
-      margin-right: 12px;
-    }
-
-    header h1 {
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    nav a {
-      margin-left: 32px;
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    section {
-      padding: 100px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .hero h2 {
-      font-size: 48px;
-      font-weight: 600;
-      max-width: 700px;
-    }
-
-    .hero p {
-      margin-top: 24px;
-      max-width: 600px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
-
-    .card {
-      padding: 32px;
-      border: 1px solid var(--accent);
-      border-radius: 12px;
-      background: #fafafa;
-    }
-
-    .card h3 {
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    footer {
-      padding: 60px 80px;
-      border-top: 1px solid var(--accent);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      header, section, footer {
-        padding: 40px 24px;
-      }
-
-      .hero h2 {
-        font-size: 36px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moden Prime Ltd</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; color: #333; }
+        header, footer { background: #fff; text-align: center; padding: 20px; border-bottom: 1px solid #eee; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .hero { display: flex; align-items: center; gap: 40px; margin-bottom: 80px; flex-wrap: wrap; }
+        .hero img { max-width: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .hero-content { flex: 1; min-width: 300px; }
+        .hero h1 { font-size: 2.5em; margin: 0 0 20px; }
+        .hero p { font-size: 1.2em; color: #666; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .card small { color: #999; }
+        .card p { color: #666; }
+        footer { background: #eee; font-size: 0.9em; color: #666; }
+        @media (max-width: 768px) { .hero { flex-direction: column; text-align: center; } }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <img src="logo.png" alt="MODEN PRIME LTD Logo">
-    <h1>MODEN PRIME LTD</h1>
-  </div>
-  <nav>
-    <a href="#about">About Us</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+    <header>
+        <h2>MODEN PRIME LTD</h2>
+    </header>
 
-<section class="hero">
-  <h2>Comprehensive Solutions for Trading, Logistics, and E-commerce</h2>
-  <p>
-    We help businesses efficiently sell products, manage logistics, and grow online sales
-    in both local and international markets.
-  </p>
-</section>
+    <div class="container">
 
-<section id="services">
-  <div class="services">
-    <div class="card">
-      <h3>Product Sales</h3>
-      <p>
-        Wholesale and retail product sales. Supplier selection, assortment management, and quality control.
-      </p>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="https://c8.alamy.com/comp/2RF3X0T/woman-using-laptop-in-coworking-with-green-plants-female-freelancer-typing-on-laptop-keyboard-online-work-in-cafe-2RF3X0T.jpg" alt="Woman working on laptop">
+            <div class="hero-content">
+                <h1>Featured Article Title — Hero Content Showcase</h1>
+                <p>Featured article description — This is where your main content excerpt would appear to give readers a preview of the full article.</p>
+            </div>
+        </section>
+
+        <!-- Articles Grid -->
+        <section class="grid">
+            <article class="card">
+                <img src="https://www.shutterstock.com/shutterstock/photos/1322114735/display_1500/stock-photo-girl-traveler-in-sunglasses-walking-on-street-in-busy-business-area-with-skyscraper-building-1322114735.jpg" alt="Stylish woman in city">
+                <div class="card-content">
+                    <small>CATEGORY — DATE</small>
+                    <p>Editor pick excerpt — Brief preview of the featured article content.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://thumbs.dreamstime.com/b/man-wearing-headphones-working-computer-programming-sitting-desk-coding-project-dual-monitors-image-shows-work-environment-346542743.jpg" alt="Programmer coding">
+                <div class="card-content">
+                    <small>CATEGORY — DATE</small>
+                    <p>Article excerpt — Short description of what this featured content covers.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://c8.alamy.com/comp/2JCNDTK/woman-doing-yoga-exercise-at-home-fit-woman-meditating-in-lotus-pose-2JCNDTK.jpg" alt="Woman doing yoga">
+                <div class="card-content">
+                    <small>CATEGORY — DATE</small>
+                    <p>Content preview — Description of the article topic and main points.</p>
+                </div>
+            </article>
+        </section>
+
     </div>
-    <div class="card">
-      <h3>Logistics Services</h3>
-      <p>
-        Full logistics cycle: storage, order processing, delivery, and supply chain optimization.
-      </p>
-    </div>
-    <div class="card">
-      <h3>E-commerce</h3>
-      <p>
-        Launch and support of online stores, marketplaces, sales automation, and integrations.
-      </p>
-    </div>
-  </div>
-</section>
 
-<section id="about">
-  <h2>About Us</h2>
-  <p style="margin-top:24px; max-width:700px; color: var(--muted);">
-    Our company combines expertise in trading, logistics, and digital solutions.
-    We work with businesses of all sizes, providing reliable and transparent processes.
-  </p>
-</section>
-
-<footer id="contact">
-  <p>© 2025 MODEN PRIME LTD. All rights reserved.</p>
-  <p style="margin-top:8px;">Email: info@company.com</p>
-</footer>
+    <footer>
+        <p><strong>MODEN PRIME LTD</strong></p>
+        <p>Email: info@modenprime.com</p>
+        <p>&copy; 2025 MODEN PRIME LTD. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
