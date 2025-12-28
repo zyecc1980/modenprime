@@ -5,78 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Prime</title>
     <style>
+        :root {
+            --primary: #00acc1;
+            --text: #333333;
+            --light-bg: #e0f7fa;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Светлый голубой градиент */
-            color: #333;
-            line-height: 1.6;
+            background: linear-gradient(to bottom, var(--light-bg), var(--white));
+            color: var(--text);
+            line-height: 1.7;
         }
 
         header {
-            padding: 30px 60px;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
             font-size: 28px;
             font-weight: bold;
-            color: #00acc1; /* Бирюзовый как в HotelHub */
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
         }
 
         nav a {
-            margin-left: 30px;
             text-decoration: none;
             color: #666;
             font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
         }
 
         .btn {
-            background: #00acc1;
+            background: var(--primary);
             color: white;
-            padding: 10px 20px;
+            padding: 10px 24px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 15px;
         }
 
         .hero {
-            padding: 100px 60px;
-            text-align: left;
+            padding: 80px 40px 120px;
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 50px;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
         }
 
         .hero-text h1 {
-            font-size: 56px;
-            font-weight: bold;
+            font-size: 52px;
+            line-height: 1.2;
             color: #006064;
-            margin-bottom: 20px;
+            margin: 0 0 30px 0;
         }
 
         .hero-img {
-            width: 400px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
         .hero-img img {
             width: 100%;
+            height: auto;
             display: block;
         }
 
         .story {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 0 60px;
+            max-width: 1100px;
+            margin: 0 auto 100px;
+            padding: 0 40px;
             position: relative;
         }
 
@@ -86,25 +119,15 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: #00acc1;
-        }
-
-        .timeline-dot {
-            width: 20px;
-            height: 20px;
-            background: #00acc1;
-            border-radius: 50%;
-            position: absolute;
-            left: -8px;
-            border: 4px solid white;
-            box-shadow: 0 0 10px rgba(0,172,193,0.3);
+            background: var(--primary);
+            transform: translateX(-50%);
         }
 
         .story-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 150px;
+            gap: 60px;
+            margin-bottom: 140px;
             position: relative;
         }
 
@@ -112,21 +135,25 @@
             flex-direction: row-reverse;
         }
 
+        .story-content, .story-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
         .story-content {
-            width: 45%;
             background: white;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
         .story-content h2 {
-            color: #00acc1;
-            margin-bottom: 20px;
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 28px;
         }
 
         .story-img {
-            width: 45%;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -134,74 +161,58 @@
 
         .story-img img {
             width: 100%;
+            height: auto;
             display: block;
         }
 
-        @media (max-width: 992px) {
-            .hero, .story-item {
-                flex-direction: column;
-                text-align: center;
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border: 5px solid white;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(0,172,193,0.4);
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 44px;
             }
-            .story-item:nth-child(even) {
-                flex-direction: column;
-            }
-            .story-content, .story-img, .hero-img {
-                width: 100%;
-                margin-bottom: 40px;
-            }
-            .timeline {
-                display: none;
+            .story-item {
+                gap: 40px;
+                margin-bottom: 120px;
             }
         }
-    </style>
-</head>
-<body>
 
-    <header>
-        <div class="logo">Modern Prime</div>
-        <nav>
-            <a href="#">Услуги</a>
-            <a href="#">Портфолио</a>
-            <a href="#">О нас</a>
-            <a href="#" class="btn">Связаться</a>
-        </nav>
-    </header>
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+            .logo {
+                font-size: 24px;
+            }
+            nav {
+                gap: 15px;
+                font-size: 14px;
+            }
+            .hero {
+                padding: 60px 20px 80px;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            .hero-img {
+                max-width: 100%;
+            }
 
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Один маленький шаг для<br>технологий, один<br>гигантский прыжок для<br>вашего бизнеса.</h1>
-        </div>
-        <div class="hero-img">
-            <img src="https://media.gettyimages.com/id/161710675/photo/vintage-astronaut-sitting-on-luggage-waiting-for-a-ride.jpg?s=612x612&w=gi&k=20&c=BuRPeyhdQJKJOmLh6jAqRzFtkBaEBPUJVEUXZ78hZRA=" alt="Астронавт с чемоданом">
-        </div>
-    </section>
-
-    <section class="story">
-        <div class="timeline"></div>
-
-        <div class="story-item">
-            <div class="story-content">
-                <h2>История начинается...</h2>
-                <p>От скромных начал — всего пара энтузиастов, мечтающих изменить мир путешествий. Мы создали простое решение для бронирования отелей, которое быстро выросло в мощную платформу.</p>
-            </div>
-            <div class="story-img">
-                <img src="https://thumbs.dreamstime.com/b/new-plant-growth-sprout-soil-minimalist-green-plant-stock-photo-small-green-plant-sprout-multiple-leaves-emerges-397643055.jpg" alt="Росток растения">
-            </div>
-            <div class="timeline-dot" style="top: 80px;"></div>
-        </div>
-
-        <div class="story-item">
-            <div class="story-content">
-                <h2>От амбициозного стартапа...</h2>
-                <p>Получили первые инвестиции, наняли команду и начали масштабироваться. С фокусом на инновации мы создали уникальные инструменты для бизнес-путешественников.</p>
-            </div>
-            <div class="story-img">
-                <img src="https://c8.alamy.com/comp/T9C396/making-money-with-his-own-business-rich-businessman-with-us-dollars-banknotes-currency-broker-with-bundle-of-money-bearded-man-holding-cash-money-business-startup-loan-cash-in-hand-T9C396.jpg" alt="Инвестиции">
-            </div>
-            <div class="timeline-dot" style="top: 80px;"></div>
-        </div>
-
-    </section>
-
-</body>
-</html>
+            /* На мобильных — блоки друг под другом, timeline по центру */
+            .story {
+                padding: 0 20px;
+            }
+            .story-item, .story-item:nth-child(e
