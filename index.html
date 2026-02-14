@@ -5,22 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moden Prime LIMITED</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; color: #333; }
-        header, footer { background: #fff; text-align: center; padding: 20px; border-bottom: 1px solid #eee; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .hero { display: flex; align-items: center; gap: 40px; margin-bottom: 80px; flex-wrap: wrap; }
-        .hero img { max-width: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .hero-content { flex: 1; min-width: 300px; }
-        .hero h1 { font-size: 2.5em; margin: 0 0 20px; }
-        .hero p { font-size: 1.2em; color: #666; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 250px; object-fit: cover; }
-        .card-content { padding: 20px; }
-        .card small { color: #999; }
-        .card p { color: #666; }
-        footer { background: #eee; font-size: 0.9em; color: #666; }
-        @media (max-width: 768px) { .hero { flex-direction: column; text-align: center; } }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: #f8f8f8; 
+            color: #333; 
+        }
+        header, footer { 
+            background: #fff; 
+            text-align: center; 
+            padding: 20px; 
+            border-bottom: 1px solid #eee; 
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+        }
+        .hero { 
+            display: flex; 
+            align-items: center; 
+            gap: 40px; 
+            margin-bottom: 80px; 
+            flex-wrap: wrap; 
+        }
+        .hero img { 
+            max-width: 500px; 
+            width: 100%; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+        }
+        .hero-content { 
+            flex: 1; 
+            min-width: 300px; 
+        }
+        .hero h1 { 
+            font-size: 2.5em; 
+            margin: 0 0 20px; 
+        }
+        .hero p { 
+            font-size: 1.2em; 
+            color: #666; 
+        }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 40px; 
+        }
+        .card { 
+            background: #fff; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+        }
+        .card img { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; 
+        }
+        .card-content { 
+            padding: 20px; 
+        }
+        .card p { 
+            color: #666; 
+        }
+        footer { 
+            background: #eee; 
+            font-size: 0.9em; 
+            color: #666; 
+        }
+
+        /* Мобильная версия — улучшения */
+        @media (max-width: 768px) {
+            .hero { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 30px; 
+            }
+            .hero img { 
+                max-width: 100%; 
+                height: auto;          /* фото не растягивается по высоте */
+                border-radius: 8px; 
+            }
+            .hero h1 { 
+                font-size: 2em;        /* чуть меньше заголовок */
+            }
+            .hero p { 
+                font-size: 1.1em; 
+            }
+            .container { 
+                padding: 30px 15px;    /* меньше отступов */
+            }
+            .grid { 
+                gap: 30px; 
+            }
+            .card img { 
+                height: 200px;         /* карточки компактнее */
+            }
+            .card-content { 
+                padding: 15px; 
+            }
+            footer { 
+                padding: 20px 15px; 
+            }
+            footer p { 
+                font-size: 0.85em; 
+                line-height: 1.4;      /* лучше читаемость */
+                margin: 8px 0; 
+            }
+        }
     </style>
 </head>
 <body>
