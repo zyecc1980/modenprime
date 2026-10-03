@@ -1,4 +1,6 @@
 #EXTM3U
+#EXTINF:0  timeshift="3",Белсат ТВ
+http://2.hls.gd/ch726/mono.m3u8?token=zyecc1980.v2_bY4DFMl7ndXOWZK5X_6M5XLxTmJtAaG7acRaSHzHXazWQy8Jfsfjdvpnk_I5P7e8Wv2lALPiWrxQ
 #EXTINF:0  timeshift="3",RTVI
 http://2.hls.gd/ch100/mono.m3u8?token=zyecc1980.v2_WrJjJblR6JavDmXxAbRM14qd6Y26XbMKdFCQEr4yhY3hWh1Dh37YPTXFMTVMNZ0xZI4jf2smG8Of
 #EXTINF:0  timeshift="8",Домашний
@@ -1531,8 +1533,6 @@ http://2.hls.gd/ch583/mono.m3u8?token=zyecc1980.v2_QkyKAT86qx9dajTomKUNbYod6eigs
 http://2.hls.gd/ch565/mono.m3u8?token=zyecc1980.v2_oE1P3O3uBjMQkDpiBKmGc-N39eYeVs9jg19paOCB69nMC7EnpRBjNuefUUyxV1p54IWHb0apR_sn
 #EXTINF:0  timeshift="3",Беларусь 5
 http://2.hls.gd/ch473/mono.m3u8?token=zyecc1980.v2_qE2nkaOdLEG1B19Lt8ysp61RF9KrpEkXkfPXN1-uQBW9hV1nWJMsD_2Ly9R0IS9PgZyHFlOHB33B
-#EXTINF:0  timeshift="3",Белсат ТВ
-http://2.hls.gd/ch726/mono.m3u8?token=zyecc1980.v2_bY4DFMl7ndXOWZK5X_6M5XLxTmJtAaG7acRaSHzHXazWQy8Jfsfjdvpnk_I5P7e8Wv2lALPiWrxQ
 #EXTINF:0  timeshift="3",ВТВ Беларусь
 ------------------------------------------------------------------------------------------
 #EXTINF:0,НТВ Беларусь
