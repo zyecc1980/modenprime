@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор дозировок удобрений для аквариума</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #22d3ee;
+      --accent-dim: #0891b2;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --input-bg: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #22d3ee, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+
+    .card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2 .icon {
+      font-size: 1.3rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    input::placeholder {
+      color: #64748b;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #22d3ee, #0891b2);
+      color: #0f172a;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(34, 211, 238, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      font-size: 0.85rem;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-danger {
+      background: transparent;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+
+    .fertilizer-item {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .fertilizer-item .remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .fertilizer-item h3 {
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .elements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 8px;
+    }
+
+    .element-input label {
+      font-size: 0.75rem;
+    }
+
+    .element-input input {
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+
+    .results {
+      margin-top: 24px;
+    }
+
+    .result-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .result-card h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .result-table th,
+    .result-table td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-table th {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+
+    .result-table td.dose {
+      font-weight: 700;
+      color: var(--success);
+      font-size: 1.05rem;
+    }
+
+    .result-table td.warning {
+      color: var(--warning);
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .info-box {
+      background: rgba(34, 211, 238, 0.08);
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .info-box strong {
+      color: var(--accent);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tab {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .tab.active {
+      background: rgba(34, 211, 238, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .unit-select {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .unit-select label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌿 Калькулятор дозировок удобрений</h1>
+      <p>Универсальный расчёт для аквариумных растений</p>
+    </header>
+
+    <div class="info-box">
+      <strong>Как пользоваться:</strong><br>
+      1. Укажите объём аквариума и целевые концентрации элементов.<br>
+      2. Добавьте свои удобрения и введите их состав (концентрацию элементов в растворе или сухом виде).<br>
+      3. Нажмите «Рассчитать» — получите рекомендуемую дозировку каждого удобрения.
+    </div>
+
+    <div class="grid">
+      <!-- Левая колонка: параметры аквариума -->
+      <div class="card">
+        <h2><span class="icon">🐠</span> Параметры аквариума</h2>
+
+        <div class="form-group">
+          <label>Объём аквариума (литры)</label>
+          <input type="number" id="volume" value="100" min="1" step="1">
+        </div>
+
+        <div class="form-group">
+          <label>Тип расчёта</label>
+          <select id="calcMode">
+            <option value="toTarget">Довести до целевой концентрации (с учётом текущей)</option>
+            <option value="fromZero">Добавить с нуля (текущая = 0)</option>
+            <option value="daily">Суточная дозировка (поддержка)</option>
+          </select>
+        </div>
+
+        <h3 style="font-size:0.95rem; margin:18px 0 10px; color:var(--muted);">Целевые концентрации (мг/л)</h3>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>NO₃ (нитраты)</label>
+            <input type="number" id="target_NO3" value="20" min="0" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Текущий NO₃</label>
+            <input type="number" id="current_NO3" value="0" min="0" step="0.1">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>PO₄ (фосфаты)</label>
+            <input type="number" id="target_PO4" value="1.5" min="0" step="0.01">
+          </div>
+          <div class="form-group">
+            <label>Текущий PO₄</label>
+            <input type="number" id="current_PO4" value="0" min="0" step="0.01">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>K (калий)</label>
+            <input type="number" id="target_K" value="20" min="0" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Текущий K</label>
+            <input type="number" id="current_K" value="0" min="0" step="0.1">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Fe (железо)</label>
+            <input type="number" id="target_Fe" value="0.5" min="0" step="0.01">
+          </div>
+          <div class="form-group">
+            <label>Текущий Fe</label>
+            <input type="number" id="current_Fe" value="0" min="0" step="0.01">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mg (магний)</label>
+            <input type="number" id="target_Mg" value="10" min="0" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Текущий Mg</label>
+            <input type="number" id="current_Mg" value="0" min="0" step="0.1">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ca (кальций)</label>
+            <input type="number" id="target_Ca" value="30" min="0" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Текущий Ca</label>
+            <input type="number" id="current_Ca" value="0" min="0" step="0.1">
+          </div>
+        </div>
+
+        <p class="note" style="margin-top:4px; color:#64748b;">
+          ℹ️ Нет тестов на Mg и Ca? Оставляйте «Текущий» = 0. Калькулятор посчитает добавку от нуля.
+        </p>
+      </div>
+
+      <!-- Правая колонка: удобрения -->
+      <div class="card">
+        <h2><span class="icon">🧪</span> Ваши удобрения</h2>
+
+        <div class="unit-select">
+          <label><input type="radio" name="unitType" value="liquid" checked> Жидкие (мг/мл или %)</label>
+          <label><input type="radio" name="unitType" value="dry"> Сухие (мг/г или %)</label>
+        </div>
+
+        <div id="fertilizersList"></div>
+
+        <button class="btn btn-secondary" onclick="addFertilizer()" style="width:100%; margin-bottom:12px;">
+          + Добавить удобрение
+        </button>
+
+        <button class="btn btn-primary" onclick="calculate()">
+          Рассчитать дозировки
+        </button>
+      </div>
+    </div>
+
+    <!-- Результаты -->
+    <div class="card results" id="resultsSection" style="display:none; margin-top:24px;">
+      <h2><span class="icon">📊</span> Результаты расчёта</h2>
+      <div id="resultsContent"></div>
+    </div>
+
+    <footer>
+      Калькулятор для аквариумных растений · Учитывайте потребление растений и регулярные подмены воды
+    </footer>
+  </div>
+
+  <script>
+    let fertilizerCount = 0;
+    const elements = ['NO3', 'PO4', 'K', 'Fe', 'Mg', 'Ca'];
+    const elementNames = {
+      NO3: 'NO₃',
+      PO4: 'PO₄',
+      K: 'K',
+      Fe: 'Fe',
+      Mg: 'Mg',
+      Ca: 'Ca'
+    };
+
+    function addFertilizer(name = '', data = {}) {
+      fertilizerCount++;
+      const id = fertilizerCount;
+      const list = document.getElementById('fertilizersList');
+      
+      const div = document.createElement('div');
+      div.className = 'fertilizer-item';
+      div.id = `fert_${id}`;
+      div.innerHTML = `
+        <button class="btn btn-danger remove-btn" onclick="removeFertilizer(${id})">✕</button>
+        <h3>Удобрение #${id}</h3>
+        <div class="form-group">
+          <label>Название</label>
+          <input type="text" id="name_${id}" placeholder="Например: Макро NPK" value="${name}">
+        </div>
+        <div class="form-group">
+          <label>Единицы концентрации</label>
+          <select id="concType_${id}">
+            <option value="mgml">мг/мл (жидкое)</option>
+            <option value="percent">% (массовые)</option>
+            <option value="mgg">мг/г (сухое)</option>
+          </select>
+        </div>
+        <div class="elements-grid">
+          ${elements.map(el => `
+            <div class="element-input">
+              <label>${elementNames[el]}</label>
+              <input type="number" id="${el}_${id}" value="${data[el] || ''}" min="0" step="0.001" placeholder="0">
+            </div>
+          `).join('')}
+        </div>
+      `;
+      list.appendChild(div);
+    }
+
+    function removeFertilizer(id) {
+      const el = document.getElementById(`fert_${id}`);
+      if (el) el.remove();
+    }
+
+    function getNumber(id) {
+      const val = parseFloat(document.getElementById(id)?.value);
+      return isNaN(val) ? 0 : val;
+    }
+
+    function calculate() {
+      const volume = getNumber('volume');
+      if (volume <= 0) {
+        alert('Укажите объём аквариума');
+        return;
+      }
+
+      const mode = document.getElementById('calcMode').value;
+      const targets = {};
+      const currents = {};
+      const needed = {};
+
+      elements.forEach(el => {
+        targets[el] = getNumber(`target_${el}`);
+        currents[el] = getNumber(`current_${el}`);
+        
+        if (mode === 'fromZero') {
+          needed[el] = targets[el];
+        } else if (mode === 'daily') {
+          // Для суточной дозировки берём примерно 10-20% от целевой как суточное потребление
+          // Пользователь может корректировать цели
+          needed[el] = targets[el] * 0.15; // 15% от целевой как примерное суточное потребление
+        } else {
+          needed[el] = Math.max(0, targets[el] - currents[el]);
+        }
+      });
+
+      // Собираем удобрения
+      const fertilizers = [];
+      document.querySelectorAll('.fertilizer-item').forEach(item => {
+        const id = item.id.replace('fert_', '');
+        const name = document.getElementById(`name_${id}`)?.value || `Удобрение #${id}`;
+        const concType = document.getElementById(`concType_${id}`)?.value || 'mgml';
+        
+        const composition = {};
+        let hasAny = false;
+        elements.forEach(el => {
+          const val = getNumber(`${el}_${id}`);
+          composition[el] = val;
+          if (val > 0) hasAny = true;
+        });
+
+        if (hasAny) {
+          fertilizers.push({ id, name, concType, composition });
+        }
+      });
+
+      if (fertilizers.length === 0) {
+        alert('Добавьте хотя бы одно удобрение с составом');
+        return;
+      }
+
+      // Расчёт дозировок
+      // Для каждого элемента находим, какое удобрение лучше использовать
+      // Простой подход: рассчитываем дозировку каждого удобрения по каждому элементу
+      // и выбираем минимальную дозировку, которая не передозирует остальные
+
+      let html = '';
+
+      // Таблица потребностей
+      html += `<div class="result-card">
+        <h3>Потребность в элементах</h3>
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>Элемент</th>
+              <th>Цель (мг/л)</th>
+              <th>Текущий</th>
+              <th>Нужно добавить (мг/л)</th>
+              <th>Всего в аквариуме (мг)</th>
+            </tr>
+          </thead>
+          <tbody>`;
+      
+      elements.forEach(el => {
+        const totalMg = needed[el] * volume;
+        html += `<tr>
+          <td>${elementNames[el]}</td>
+          <td>${targets[el]}</td>
+          <td>${mode === 'fromZero' ? 0 : currents[el]}</td>
+          <td>${needed[el].toFixed(2)}</td>
+          <td>${totalMg.toFixed(1)}</td>
+        </tr>`;
+      });
+      html += `</tbody></table></div>`;
+
+      // Расчёт по каждому удобрению
+      html += `<div class="result-card">
+        <h3>Рекомендуемые дозировки</h3>
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>Удобрение</th>
+              <th>Дозировка</th>
+              <th>По какому элементу</th>
+              <th>Влияние на другие</th>
+            </tr>
+          </thead>
+          <tbody>`;
+
+      fertilizers.forEach(fert => {
+        // Находим элемент с наибольшей потребностью относительно содержания в удобрении
+        let bestEl = null;
+        let bestDose = Infinity;
+        let limitingFactor = '';
+
+        elements.forEach(el => {
+          if (fert.composition[el] > 0 && needed[el] > 0) {
+            let dose;
+            // concType: mgml = мг элемента в 1 мл удобрения
+            // percent = % = г элемента в 100 г = 10 мг/г примерно, но для жидкости % часто по массе
+            // mgg = мг/г
+            
+            if (fert.concType === 'mgml') {
+              // мг элемента / мл удобрения
+              // нужно needed[el] * volume мг элемента
+              // dose_ml = (needed * volume) / composition
+              dose = (needed[el] * volume) / fert.composition[el];
+            } else if (fert.concType === 'mgg') {
+              // мг/г
+              dose = (needed[el] * volume) / fert.composition[el]; // в граммах
+            } else if (fert.concType === 'percent') {
+              // % = г / 100 г = 10 мг/г
+              // 1% = 10 мг/г
+              const mgPerUnit = fert.composition[el] * 10; // мг на грамм (или мл если плотность ~1)
+              dose = (needed[el] * volume) / mgPerUnit;
+            }
+
+            if (dose < bestDose) {
+              bestDose = dose;
+              bestEl = el;
+            }
+          }
+        });
+
+        if (bestEl === null) {
+          html += `<tr>
+            <td>${fert.name}</td>
+            <td colspan="3" class="warning">Не содержит нужных элементов</td>
+          </tr>`;
+          return;
+        }
+
+        // Проверяем влияние на другие элементы
+        let impact = [];
+        elements.forEach(el => {
+          if (fert.composition[el] > 0) {
+            let added;
+            if (fert.concType === 'mgml') {
+              added = (bestDose * fert.composition[el]) / volume;
+            } else if (fert.concType === 'mgg') {
+              added = (bestDose * fert.composition[el]) / volume;
+            } else {
+              const mgPerUnit = fert.composition[el] * 10;
+              added = (bestDose * mgPerUnit) / volume;
+            }
+            if (added > 0.01) {
+              impact.push(`${elementNames[el]} +${added.toFixed(2)}`);
+            }
+          }
+        });
+
+        const unit = fert.concType === 'mgml' ? 'мл' : 'г';
+        const doseStr = bestDose < 0.1 ? bestDose.toFixed(3) : bestDose.toFixed(2);
+
+        html += `<tr>
+          <td><strong>${fert.name}</strong></td>
+          <td class="dose">${doseStr} ${unit}</td>
+          <td>по ${elementNames[bestEl]}</td>
+          <td style="font-size:0.85rem">${impact.join(', ')}</td>
+        </tr>`;
+      });
+
+      html += `</tbody></table>
+        <p class="note">
+          💡 Дозировка рассчитана так, чтобы достичь целевого значения по ограничивающему элементу. 
+          Остальные элементы будут добавлены пропорционально составу удобрения.
+          ${mode === 'daily' ? '<br>⚠️ Режим «Суточная дозировка» использует ~15% от целевой концентрации как примерное суточное потребление. Корректируйте по результатам тестов.' : ''}
+        </p>
+      </div>`;
+
+      // Дополнительная подсказка
+      html += `<div class="result-card">
+        <h3>Полезные советы</h3>
+        <ul style="padding-left:18px; font-size:0.9rem; color:var(--muted);">
+          <li>Всегда проверяйте реальные концентрации тестами после дозирования.</li>
+          <li>Лучше недокормить, чем перекормить (особенно фосфаты и железо).</li>
+          <li>При использовании нескольких удобрений дозируйте по очереди и пересчитывайте остаток.</li>
+          <li>Учитывайте потребление растений — оно зависит от освещения, CO₂ и вида растений.</li>
+          <li>Рекомендуется делать подмены воды 30–50% раз в неделю.</li>
+        </ul>
+      </div>`;
+
+      document.getElementById('resultsContent').innerHTML = html;
+      document.getElementById('resultsSection').style.display = 'block';
+      document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Добавляем удобрения по умолчанию (ваши составы)
+    window.onload = function() {
+      // Самомес Калия: 110 г K2SO4 на 1 л → ~50 мг K / мл
+      addFertilizer('Самомес Калия (АкваБиоКлуб)', { K: 50 });
+      
+      // Самомес Нитратов: 80 г KNO3 на 1 л → NO3 50 мг/мл + K 30 мг/мл
+      addFertilizer('Самомес Нитратов (АкваБиоКлуб)', { NO3: 50, K: 30 });
+      
+      // AQUAERUS МИКРО (AQUAYER): Fe 1.372, K 7.92, Mg 0.915 мг/мл
+      addFertilizer('AQUAERUS МИКРО', { Fe: 1.372, K: 7.92, Mg: 0.915 });
+      
+      // ЖЕЛЕЗО AQUARIUM LIFE: Fe 1.0, Mg 2.1 мг/мл
+      addFertilizer('ЖЕЛЕЗО AQUARIUM LIFE', { Fe: 1.0, Mg: 2.1 });
+    };
+  </script>
+</body>
+</html>
