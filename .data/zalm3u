@@ -90,7 +90,7 @@ https://zabava-htlive.cdn.ngenix.net/hls/CH_RUSSIA1/variant.m3u8
 #EXTINF:0 timeshift="8",Россия К
 https://zabava-htlive.cdn.ngenix.net/hls/CH_RUSSIAK/variant.m3u8
 #EXTINF:0 timeshift="3",НТВ Право
-https://cdn.ntv.ru/th_pravo/tracks-v1a1/mono.m3u8
+http://2.hls.gd/ch612/mono.m3u8?token=zyecc1980.v2_2gfTjcfJeq6jI4EeD0wSnmCFrzJ2dwbmP7mdw-6MoPmWfUTpu70pPyjx_Gmh1qUnCZVviwQpE-eD
 #EXTINF:0,Санкт Петербург
 https://rt-nw-spb-htlive.cdn.ngenix.net/hls/CH_R02_SPBREGIONALHD/variant.m3u8
 #EXTINF:0 timeshift="8",СТС
