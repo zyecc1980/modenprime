@@ -5,8 +5,8 @@ https://amg17233-amg17233c1-wisptv-us-6409.playouts.now.amagi.tv/ts-us-w2-n2/pla
 https://wl.tvrain.tv/transcode/ngrp:ses_all/playlist.m3u8
 #EXTINF:0,Euronews Россия
 https://cdn-euronews.akamaized.net/live/eds/euronews-ru/25071/index.m3u8
-#EXTINF:0 timeshift="8",Домашний
-https://zabava-htlive.cdn.ngenix.net/hls/CH_DOMASHNIY/variant.m3u8
+#EXTINF:0 timeshift="3",Белсат ТВ
+https://iptv.prosto.tv/ch171/index.m3u8
 #EXTINF:0 timeshift="1",Домашний (+4)
 https://zabava-htlive.cdn.ngenix.net/hls/CH_DOMASHNIY/variant.m3u8
 #EXTINF:0 timeshift="3",Домашний FHD
